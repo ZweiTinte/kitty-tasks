@@ -1,0 +1,30 @@
+@import "./_variables";
+
+@mixin sidebar {
+  position: fixed;
+  height: 100vw;
+  top: 0;
+  background-color: $itemBackground;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin inputElement {
+  outline: none;
+  font-size: 1rem;
+  color: $white;
+  background-color: $itemBackground;
+}
+
+@mixin defaultHover {
+  &:hover {
+    background-color: $defaultHover;
+    color: $black;
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "value": "Project 1"
+    },
+    {
+      "id": 2,
+      "value": "Project 2"
+    }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "project": 1,
+      "value": "Happy Kitty"
+    },
+    {
+      "id": 2,
+      "project": 1,
+      "value": "Kitty Management"
+    },
+    {
+      "id": 3,
+      "project": 2,
+      "value": "Serious Business"
+    },
+    {
+      "id": 4,
+      "project": 2,
+      "value": "Happy Fun Time"
+    },
+    {
+      "id": 5,
+      "project": 2,
+      "value": "Special Events"
+    }
+  ],
+  "lanes": [
+    {
+      "id": 1,
+      "board": 1,
+      "name": "New"
+    },
+    {
+      "name": "Backlog",
+      "board": 1,
+      "id": 2
+    },
+    {
+      "name": "In Progress",
+      "board": 1,
+      "id": 3
+    },
+    {
+      "id": 4,
+      "board": 1,
+      "name": "Done"
+    },
+    {
+      "id": 5,
+      "board": 3,
+      "name": "New"
+    },
+    {
+      "id": 6,
+      "board": 3,
+      "name": "Backlog"
+    },
+    {
+      "id": 7,
+      "board": 3,
+      "name": "In Progress"
+    },
+    {
+      "id": 8,
+      "board": 3,
+      "name": "Done"
+    },
+    {
+      "name": "New Lane",
+      "board": 3,
+      "id": 9
+    },
+    {
+      "body": "{\"name\":\"New Lane\",\"board\":4}",
+      "id": 10
+    },
+    {
+      "body": "{\"name\":\"New Lane\",\"board\":4}",
+      "id": 11
+    }
+  ],
+  "tickets": [
+    {
+      "name": "Make the kitty happy",
+      "description": "The kitty needs her special treatment.",
+      "lane": 3,
+      "id": 1
+    },
+    {
+      "name": "Feed the kitty",
+      "description": "She likes tuna.",
+      "lane": 1,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "lane": 7,
+      "name": "Job Interview",
+      "description": "Successfully go through the Job Interview on Thursday 24.08.2023 at 13:30."
+    },
+    {
+      "name": "Prepare for Job Interview",
+      "description": "Practice Vue coding and prepare for challenging questions.",
+      "lane": 8,
+      "id": 4
+    },
+    {
+      "name": "Check Riri's plushy Kitty",
+      "description": "Make sure Riri takes good care of the plushy Amy Kitty!",
+      "lane": 4,
+      "id": 5
+    }
+  ]
+}
