@@ -34,6 +34,11 @@
       "id": 5,
       "project": 2,
       "value": "Special Events"
+    },
+    {
+      "value": "New Board",
+      "project": 1,
+      "id": 6
     }
   ],
   "lanes": [

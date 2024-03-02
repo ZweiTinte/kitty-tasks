@@ -5,12 +5,10 @@ import { DropdownItem } from "../../types/dropdownTypes";
 const DropdownMenu = ({
   dropdownItem,
   dropdownData,
-  selectedItem,
   setSelectedItem,
 }: {
   dropdownItem: string;
   dropdownData: DropdownItem[];
-  selectedItem: string;
   setSelectedItem: (item: string) => void;
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -43,7 +41,7 @@ const DropdownMenu = ({
     <>
       <div className={dropdownStyle} onBlur={handleFocusOut} tabIndex={0}>
         <div className="dropdown" onClick={() => setOpenState(!open)}>
-          {selectedItem || dropdownItem}
+          {dropdownItem}
         </div>
         {open && (
           <>

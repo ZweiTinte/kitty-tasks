@@ -3,17 +3,15 @@ import LeftSidebar from "../components/level1/LeftSidebar";
 import LaneArea from "../components/atoms/LaneArea";
 import RightSidebar from "../components/atoms/RightSidebar";
 import { Board, Lane, Project, Ticket } from "../models/models";
+import { createLane, fetchLanesData, updateLane } from "../api/lanesApi";
 import {
-  createLane,
   createTicket,
   deleteTicket,
-  fetchBoardsData,
-  fetchLanesData,
-  fetchProjectsData,
   fetchTicketsData,
-  updateLane,
   updateTicket,
-} from "../api/api";
+} from "../api/ticketsApi";
+import { fetchProjectsData } from "../api/projectsApi";
+import { createBoard, fetchBoardsData } from "../api/boardsApi";
 
 const IndexPage = () => {
   const [boardsReady, setBoardsReady] = React.useState(false);
@@ -40,23 +38,10 @@ const IndexPage = () => {
   const [lanes, setLanes] = React.useState<Lane[]>([]);
   const [tickets, setTickets] = React.useState<Ticket[]>([]);
   const [activeLanes, setActiveLanes] = React.useState<Lane[]>([]);
-  const [selectedItem, setSelectedItem] = React.useState("");
 
   function selectTicket(ticket: Ticket) {
     setSelectedTicket(ticket);
     localStorage.setItem("activeTicket", ticket.id.toString());
-  }
-
-  async function laneUpdate(lane: Lane) {
-    await updateLane(() => {
-      setLanesReady(false);
-    }, lane);
-  }
-
-  async function createNewLaneItem(boardId: number) {
-    await createLane(() => {
-      setLanesReady(false);
-    }, boardId);
   }
 
   async function ticketUpdate(ticket: Ticket) {
@@ -75,12 +60,16 @@ const IndexPage = () => {
     }, ticketId.toString());
   }
 
-  function laneSave(lane: Lane) {
-    laneUpdate(lane);
+  async function laneSave(lane: Lane) {
+    await updateLane(() => {
+      setLanesReady(false);
+    }, lane);
   }
 
-  function laneCreate(boardId: number) {
-    createNewLaneItem(boardId);
+  async function laneCreate(boardId: number) {
+    await createLane(() => {
+      setLanesReady(false);
+    }, boardId);
   }
 
   async function ticketLaneUpdate(ticketId: string, laneId: string) {
@@ -97,20 +86,27 @@ const IndexPage = () => {
     );
   }
 
-  async function createNewTicket(ticket: Ticket) {
-    await createTicket(() => {
-      setTicketsReady(false);
-    }, ticket);
-  }
-
-  function ticketCreate(laneId: number) {
+  async function ticketCreate(laneId: number) {
     const newTicket = {
       lane: laneId,
       name: "New Ticket",
       description: "",
       id: 0,
     };
-    createNewTicket(newTicket);
+    await createTicket(() => {
+      setTicketsReady(false);
+    }, newTicket);
+  }
+
+  async function boardCreate(projectId: number) {
+    const newBoard = {
+      project: projectId,
+      value: "New Board",
+      id: 0,
+    };
+    await createBoard(() => {
+      setBoardsReady(false);
+    }, newBoard);
   }
 
   function resolveFetchingProjects(data: Project[]): void {
@@ -187,7 +183,6 @@ const IndexPage = () => {
           projectList={projectList}
           boards={boards}
           selectedBoard={selectedBoard}
-          selectedItem={selectedItem}
           setSelectedItem={async (item) => {
             setSelectedProject(
               (projectList as Project[]).filter(function (i) {
@@ -209,6 +204,7 @@ const IndexPage = () => {
               selectedProject.id.toString()
             );
           }}
+          createNewBoard={boardCreate}
         />
       )}
       {boardsReady && ticketsReady && lanesReady && (

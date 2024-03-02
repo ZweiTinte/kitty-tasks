@@ -70,6 +70,7 @@ const LaneArea = ({
                 type="button"
                 className="newButton"
                 value="+"
+                title="New Ticket"
                 onClick={() => createNewTicket(lane.id)}
               />
             </div>
@@ -99,6 +100,7 @@ const LaneArea = ({
           type="button"
           className="newLaneButton"
           value="+"
+          title="New Lane"
           onClick={() => createNewLane(activeBoard.id)}
         />
       </div>

@@ -6,18 +6,18 @@ const LeftSidebar = ({
   selectedProject,
   projectList,
   boards,
-  selectedItem,
   setSelectedItem,
   selectedBoard,
   setSelectedBoard,
+  createNewBoard,
 }: {
   selectedProject: Project;
   projectList: Project[];
   boards: Board[];
-  selectedItem: string;
   setSelectedItem: (item: string) => void;
   selectedBoard: Board;
   setSelectedBoard: (board: Board) => void;
+  createNewBoard: (projectId: number) => void;
 }) => {
   return (
     <div className="leftSidebar">
@@ -25,7 +25,6 @@ const LeftSidebar = ({
         <DropdownMenu
           dropdownItem={selectedProject.value}
           dropdownData={projectList}
-          selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
         />
       </div>
@@ -41,6 +40,13 @@ const LeftSidebar = ({
             </li>
           );
         })}
+        <input
+          type="button"
+          className="newButton"
+          value="+"
+          title="New Board"
+          onClick={() => createNewBoard(selectedProject.id)}
+        />
       </ul>
     </div>
   );
